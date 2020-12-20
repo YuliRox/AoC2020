@@ -4,16 +4,18 @@ using System.Linq;
 
 namespace PasswordPhilosophy
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] _)
         {
             var inputReader = new InputReader();
             var pwList = inputReader.ReadInput("input.txt");
 
-            var validPasswords = pwList.Count( pw => pw.policy.IsValidPassword(pw.password));
+            var validPasswords = pwList.Count(pw => pw.policy.IsValidPassword(pw.password));
             Console.WriteLine($"Valid Passwords: {validPasswords}");
 
+            var validPasswords2 = pwList.Count(pw => pw.policy.IsValidPassword2(pw.password));
+            Console.WriteLine($"Valid Passwords: {validPasswords2}");
         }
     }
 
@@ -26,15 +28,14 @@ namespace PasswordPhilosophy
             return input.Select(line =>
             {
                 var rawFields = line.Trim().Split(' ');
-                var range = rawFields[0].Split('-').Select(Int32.Parse).ToArray();
-                var character = rawFields[1].Split(':').First();
+                var range = rawFields[0].Split('-').Select(int.Parse).ToArray();
+                var character = rawFields[1].Split(':')[0];
 
                 var pwdPolicy = new PwPolicy(range[0], range[1], character[0]);
                 return new PwdParams(pwdPolicy, rawFields[2]);
             }
             ).ToArray();
         }
-
     }
 
     public readonly struct PwdParams
@@ -47,7 +48,6 @@ namespace PasswordPhilosophy
             policy = Policy;
             password = Password;
         }
-
     }
 
     public readonly struct PwPolicy
@@ -64,23 +64,22 @@ namespace PasswordPhilosophy
         }
     }
 
-    public static class PwPolicyExtension {
-
-        public static bool IsValidPassword ( this PwPolicy policy, string password){
-
-                var cCount = password.Count( character => character == policy.Character );
-
-                if ( policy.InRange(cCount))
-                    return true;
-
-                return false;
+    public static class PwPolicyExtension
+    {
+        public static bool IsValidPassword(this PwPolicy policy, string password)
+        {
+            var cCount = password.Count(character => character == policy.Character);
+            return policy.InRange(cCount);
         }
 
-        public static bool InRange ( this PwPolicy policy, int count){
-            if ( count >= policy.Min && count <= policy.Max)
-                return true;
-            
-            return false;
+        public static bool IsValidPassword2(this PwPolicy policy, string password)
+        {
+            return password[policy.Min - 1] == policy.Character ^ password[policy.Max - 1] == policy.Character;
+        }
+
+        public static bool InRange(this PwPolicy policy, int count)
+        {
+            return count >= policy.Min && count <= policy.Max;
         }
     }
 }
