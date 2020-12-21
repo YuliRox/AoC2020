@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PassportProcessing
 {
@@ -10,25 +11,29 @@ namespace PassportProcessing
     {
         private static void Main(string[] _)
         {
-
             var ir = new InputReader();
-            var passports = ir.ReadInput("input");
+            var passports = ir.ReadInput("input.txt");
 
-            var validPassports = passports.Count(passport => passport.IsValid());
-            Console.WriteLine($"Valid Passports: {validPassports}");
+            var validPassports = passports.Where(passport => passport.IsValid());
+            Console.WriteLine($"Valid Passports: {validPassports.Count()}");
 
+            var moreValidPassports = validPassports.Where(passport => passport.IsMoreValid());
+            Console.WriteLine($"More valid Passports: {moreValidPassports.Count()}");
+
+            /*foreach (var p in moreValidPassports.OrderBy(x => x.PassportId))
+            {
+                Console.WriteLine(p);
+            }*/
         }
     }
 
     public class InputReader
     {
-
         public Passport[] ReadInput(string input)
         {
             using var textStream = new StreamReader(input);
 
             return ReadPassports(textStream);
-
         }
 
         public Passport[] ReadPassports(StreamReader sr)
@@ -40,9 +45,7 @@ namespace PassportProcessing
             {
                 passports.Add(newPassport.Value);
             }
-
             return passports.ToArray();
-
         }
 
         public Passport? ReadPassport(StreamReader sr)
@@ -68,7 +71,6 @@ namespace PassportProcessing
                 if (Int32.TryParse(fieldValue, out var outVar))
                     return outVar;
                 return null;
-
             }
 
             return new Passport(
@@ -81,9 +83,7 @@ namespace PassportProcessing
                 rawFields.GetValueOrDefault("pid"),
                 ToInt("cid")
             );
-
         }
-
     }
 
     public static class PassportValidator
@@ -98,10 +98,121 @@ namespace PassportProcessing
                    passport.EyeColor != null &&
                    passport.PassportId != null;
         }
+
+        public static bool IsHeightValid(this Passport passport)
+        {
+            if (passport.Height == null)
+                return false;
+
+            var heightPattern = new Regex(@"(\d+)(cm|in)");
+            if (heightPattern.IsMatch(passport.Height))
+            {
+                var matches = heightPattern.Match(passport.Height);
+                var decimalHeight = int.Parse(matches.Groups[1].Value);
+                if (matches.Groups[2].Value == "cm")
+                {
+                    if (decimalHeight < 150 || decimalHeight > 193)
+                        return false;
+                }
+                else if (matches.Groups[2].Value == "in")
+                {
+                    if (decimalHeight < 59 || decimalHeight > 76)
+                        return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool IsHairColorValid(this Passport passport)
+        {
+            if (passport.HairColor == null)
+                return false;
+
+            var hairPattern = new Regex("#[a-f0-9]{6}");
+            return hairPattern.IsMatch(passport.HairColor);
+        }
+
+        public static bool IsEyeValid(this Passport passport)
+        {
+            if (passport.EyeColor == null)
+                return false;
+            var allowedEye = new string[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
+            return allowedEye.Contains(passport.EyeColor);
+        }
+        public static bool IsPidValid(this Passport passport)
+        {
+            if (passport.PassportId == null)
+                return false;
+
+            var pidPattern = new Regex(@"\d{9}");
+            return pidPattern.IsMatch(passport.PassportId);
+        }
+
+        public static bool IsNumberValid(this Passport passport, Func<Passport, int?> selector, int min, int max)
+        {
+            var number = selector(passport);
+            if (number == null)
+                return false;
+            return number >= min && number <= max;
+        }
+
+        public static bool IsMoreValid(this Passport passport)
+        {
+            /*if (!passport.IsValid())
+                return false;*/
+
+            if (!passport.IsHeightValid())
+                return false;
+
+            if (!passport.IsHairColorValid())
+                return false;
+
+            if (!passport.IsEyeValid())
+                return false;
+
+            if (!passport.IsPidValid())
+                return false;
+
+            if (!passport.IsNumberValid(x => x.BirthYear, 1920, 2002))
+                return false;
+
+            if (!passport.IsNumberValid(x => x.IssueYear, 2010, 2020))
+                return false;
+
+            if (!passport.IsNumberValid(x => x.ExpirationYear, 2020, 2030))
+                return false;
+
+            return true;
+        }
     }
 
     public readonly struct Passport
     {
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append(BirthYear);
+            sb.Append("|");
+            sb.Append(IssueYear);
+            sb.Append("|");
+            sb.Append(ExpirationYear);
+            sb.Append("|");
+            sb.Append(Height.PadLeft(5));
+            sb.Append("|");
+            sb.Append(HairColor);
+            sb.Append("|");
+            sb.Append(EyeColor);
+            sb.Append("|");
+            sb.Append(PassportId);
+            sb.Append("|");
+            sb.Append(CountryId);
+
+            return sb.ToString();
+        }
 #nullable enable
         public Passport(int? birthYear, int? issueYear, int? expirationYear, string? height, string? hairColor, string? eyeColor, string? passportId, int? countryId)
         {
