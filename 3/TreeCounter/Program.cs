@@ -22,7 +22,13 @@ namespace TreeCounter
                     .ToArray()
                 ).ToArray();
 
-            EvaluateMovement(treeSlices, 3, 1);
+            var r3d1 = EvaluateMovement(treeSlices, 3, 1);
+            var r1d1 = EvaluateMovement(treeSlices, 1, 1);
+            var r5d1 = EvaluateMovement(treeSlices, 5, 1);
+            var r7d1 = EvaluateMovement(treeSlices, 7, 1);
+            var r1d2 = EvaluateMovement(treeSlices, 1, 2);
+
+            Console.WriteLine("Final Product: " + (r3d1 * r1d1 * r5d1 * r7d1 * r1d2));
         }
 
         private static int EvaluateMovement(char[][] treeSlices, int rightMoves, int downMoves) {
