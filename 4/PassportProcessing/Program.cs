@@ -20,7 +20,7 @@ namespace PassportProcessing
             var moreValidPassports = validPassports.Where(passport => passport.IsMoreValid());
             Console.WriteLine($"More valid Passports: {moreValidPassports.Count()}");
 
-            /*foreach (var p in moreValidPassports.OrderBy(x => x.PassportId))
+            /*foreach (var p in moreValidPassports.OrderBy(x => x.IssueYear))
             {
                 Console.WriteLine(p);
             }*/
@@ -105,24 +105,22 @@ namespace PassportProcessing
                 return false;
 
             var heightPattern = new Regex(@"(\d+)(cm|in)");
-            if (heightPattern.IsMatch(passport.Height))
-            {
-                var matches = heightPattern.Match(passport.Height);
-                var decimalHeight = int.Parse(matches.Groups[1].Value);
-                if (matches.Groups[2].Value == "cm")
-                {
-                    if (decimalHeight < 150 || decimalHeight > 193)
-                        return false;
-                }
-                else if (matches.Groups[2].Value == "in")
-                {
-                    if (decimalHeight < 59 || decimalHeight > 76)
-                        return false;
-                }
-            }
-            else
+            if (!heightPattern.IsMatch(passport.Height))
             {
                 return false;
+            }
+
+            var matches = heightPattern.Match(passport.Height);
+            var decimalHeight = int.Parse(matches.Groups[1].Value);
+            if (matches.Groups[2].Value == "cm")
+            {
+                if (decimalHeight < 150 || decimalHeight > 193)
+                    return false;
+            }
+            else if (matches.Groups[2].Value == "in")
+            {
+                if (decimalHeight < 59 || decimalHeight > 76)
+                    return false;
             }
             return true;
         }
@@ -149,7 +147,7 @@ namespace PassportProcessing
                 return false;
 
             var pidPattern = new Regex(@"\d{9}");
-            return pidPattern.IsMatch(passport.PassportId);
+            return pidPattern.IsMatch(passport.PassportId) && passport.PassportId.Length == 9;
         }
 
         public static bool IsNumberValid(this Passport passport, Func<Passport, int?> selector, int min, int max)
@@ -162,8 +160,8 @@ namespace PassportProcessing
 
         public static bool IsMoreValid(this Passport passport)
         {
-            /*if (!passport.IsValid())
-                return false;*/
+            if (!passport.IsValid())
+                return false;
 
             if (!passport.IsHeightValid())
                 return false;
