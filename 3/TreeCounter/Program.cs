@@ -17,8 +17,8 @@ namespace TreeCounter
                 .Range(0, lineLength)
                 .Select(columnIndex =>
                     // convert lines to columns
-                    input
-                    .Select(line => line[columnIndex])
+                    input // alle Zeilen
+                    .Select(line => line[columnIndex]) // aus einer Zeile Character an Stelle X
                     .ToArray()
                 ).ToArray();
 
