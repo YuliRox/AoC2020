@@ -14,7 +14,6 @@ namespace CustomCustoms
             var ir = new InputReader();
             var customsQuestions = ir.ReadInput("input.txt");
 
-            var groupCount = 1;
             var yesCount = 0;
             var stopwatch = new Stopwatch();
             var stopwatch2 = new Stopwatch();
@@ -23,7 +22,11 @@ namespace CustomCustoms
             {
 
                 stopwatch.Start();
-                var distinctYes = group.PositiveQuestions.SelectMany(x => x).Distinct().Count();
+                var distinctYes = group.PositiveQuestions
+                    .SelectMany(x => x)
+                    .GroupBy(x => x)
+                    .Select(x => new {x.Key, Count = x.Count()})
+                    .Count(x => x.Count == group.PositiveQuestions.Length);
                 stopwatch.Stop();
                 yesCount += distinctYes;
             }
@@ -31,13 +34,16 @@ namespace CustomCustoms
             Console.WriteLine($"Distinct Solution: {stopwatch.Elapsed}");
 
 
-            foreach (var group in customsQuestions)
+            /*foreach (var group in customsQuestions)
             {
                 stopwatch2.Start();
-                var distinctYes2 = group.PositiveQuestions.SelectMany(x => x).ToHashSet().Count;
+                var distinctYes2 = group.PositiveQuestions
+                    .SelectMany(x => x)
+                    .GroupBy(x => x)
+                    .ToHashSet().Count;
                 stopwatch2.Stop();
             }
-            Console.WriteLine($"HashSet Solution: {stopwatch2.Elapsed}");
+            Console.WriteLine($"HashSet Solution: {stopwatch2.Elapsed}");*/
 
             Console.WriteLine($"Sum of all yes per Group: {yesCount}");
         }
