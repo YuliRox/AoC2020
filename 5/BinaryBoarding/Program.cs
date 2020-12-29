@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace BinaryBoarding
 {
@@ -24,20 +27,30 @@ namespace BinaryBoarding
 
             Span<char> buffer = stackalloc char[11];
             int read = 0;
-
             var maxId = 0;
+
+            var seatIdList = new List<int>();
+
 
             while ((read = fileReader.Read(buffer)) != 0)
             {
                 Ticket x = new(buffer[..^1]);
                 var seatId = x.GetSeatId();
+                seatIdList.Add(seatId);
                 //Console.WriteLine($"{x.FB.ToString()}|{x.RL.ToString()}|{x.GetRow()}|{x.GetColumn()}|{seatId}");
 
                 if (seatId > maxId)
                     maxId = seatId;
             }
 
+            var positiveList = Enumerable.Range(seatIdList.Min(),seatIdList.Max()-seatIdList.Min()).Except(seatIdList).ToArray();
+
             Console.WriteLine($"The maximum seatId is: {maxId}");
+
+            foreach (var hole in positiveList)
+            {
+                Console.WriteLine($"Seat Candidate: {hole}");
+            }
 
             /*ReadOnlySpan<char> testInput = "FBFBBFFRLR";
             Ticket x = new(testInput);
