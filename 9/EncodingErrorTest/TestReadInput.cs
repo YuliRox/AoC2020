@@ -12,7 +12,7 @@ namespace EncodingErrorTest
         public void VerifyInputReading()
         {
             var xmasData = InputReader.Read(_inputPath);
-            Assert.IsType<int[]>(xmasData);
+            Assert.IsType<long[]>(xmasData);
             Assert.Equal(20, xmasData.Length);
         }
 
@@ -22,8 +22,8 @@ namespace EncodingErrorTest
             var xmasData = InputReader.Read(_inputPath);
             var decryptor = new XmasDecryptor(5, xmasData);
 
-            int[] startPreamble = { 35, 20, 15, 25, 47 };
-            int[] index10Preamble = { 47, 40, 62, 55, 65 };
+            long[] startPreamble = { 35, 20, 15, 25, 47 };
+            long[] index10Preamble = { 47, 40, 62, 55, 65 };
 
             Assert.True(startPreamble.SequenceEqual(decryptor.GetPreambleNumbers(0)));
             Assert.True(startPreamble.SequenceEqual(decryptor.GetPreambleNumbers(1)));
@@ -44,6 +44,29 @@ namespace EncodingErrorTest
 
             var knownFalseNumber = decryptor.IsValidNumber(14);
             Assert.False(knownFalseNumber);
+        }
+
+        [Fact]
+        public void VerifySetOfSummands(){
+            var expectedSet = new long[]{15,25,47,40};
+
+            var xmasData = InputReader.Read(_inputPath);
+            var decryptor = new XmasDecryptor(5, xmasData);
+
+            var setOfSummands = decryptor.GetSetOfSummands(14);
+
+            Assert.True(expectedSet.SequenceEqual(setOfSummands));
+
+        }
+
+        [Fact]
+        public void VerifyMinMax()
+        {
+            var testSet = new long[] { 15, 25, 47, 40 };
+
+            var minMaxValue = XmasDecryptor.GetMinMaxValue(testSet);
+
+            Assert.Equal(62, minMaxValue);
         }
     }
 }

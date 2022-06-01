@@ -14,14 +14,21 @@ namespace EncodingError
             var xmasData = InputReader.Read(_inputPath);
             var decryptor = new XmasDecryptor(preambleLength, xmasData);
             var range = Enumerable.Range(preambleLength + 1, xmasData.Count()).ToArray();
+            var targetIndex = 0;
 
             foreach (var index in range)
             {
-                if(!decryptor.IsValidNumber(index)){
+                if (!decryptor.IsValidNumber(index))
+                {
                     Console.WriteLine($"First invalid Number found at position {index}!");
-                    return;
+                    targetIndex = index;
+                    break;
                 }
             }
+
+            var setOfSummands = decryptor.GetSetOfSummands(targetIndex);
+            var minMaxValue = XmasDecryptor.GetMinMaxValue(setOfSummands);
+            Console.WriteLine(minMaxValue);
         }
     }
 
@@ -79,6 +86,50 @@ namespace EncodingError
 
             Console.WriteLine(" No!");
             return false;
+        }
+
+        public long[] GetSetOfSummands(int index)
+        {
+            var sumNumber = data[index];
+            long currentSum = 0;
+            var start = 0;
+            var end = 0;
+
+            var counter = 0;
+
+            while (counter < data.Length)
+            {
+                if (currentSum >= sumNumber)
+                {
+                    currentSum -= data[start];
+                    start++;
+                }
+
+                if (currentSum == sumNumber)
+                {
+                    return data.Skip(start).Take(end - start).ToArray();
+                }
+
+                if (currentSum <= sumNumber)
+                {
+                    currentSum += data[counter];
+                    end++;
+                    counter++;
+                }
+
+                if (currentSum == sumNumber)
+                {
+                    return data.Skip(start).Take(end - start).ToArray();
+                }
+
+            }
+            
+            return new long[0];
+        }
+
+        public static long GetMinMaxValue (long[] setOfSummands)
+        {
+            return setOfSummands.Min() + setOfSummands.Max();
         }
     }
 }
