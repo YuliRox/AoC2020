@@ -8,5 +8,20 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Shared.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="input\input_sample-short.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="input\input_sample.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="input\input_xemrox.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="input\input_yulivee.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

@@ -1,57 +1,54 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1", "1", "{037392C9-FCA9-46BB-8170-A5B5316042B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseFix", "1\ExpenseFix\ExpenseFix.csproj", "{53EF5932-67E0-4A9E-973F-85AC866B832E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpenseFix", "1\ExpenseFix\ExpenseFix.csproj", "{53EF5932-67E0-4A9E-973F-85AC866B832E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2", "2", "{16D3C9CF-694C-4F6B-A85D-FF070C45A0C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordPhilosophy", "2\PasswordPhilosophy\PasswordPhilosophy.csproj", "{4F3A3EDA-A926-43C0-8A8D-6B04D5C82CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordPhilosophy", "2\PasswordPhilosophy\PasswordPhilosophy.csproj", "{4F3A3EDA-A926-43C0-8A8D-6B04D5C82CE5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3", "3", "{127B2EF0-AE48-478A-8D41-A1B067840B0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeCounter", "3\TreeCounter\TreeCounter.csproj", "{E8E124D2-E91A-4EFA-AB86-F4449EB3C056}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeCounter", "3\TreeCounter\TreeCounter.csproj", "{E8E124D2-E91A-4EFA-AB86-F4449EB3C056}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4", "4", "{DC095185-CD4D-441A-9F8B-86DF6C248792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassportProcessing", "4\PassportProcessing\PassportProcessing.csproj", "{553BAFF2-2CFB-437A-82F3-5B0B90134BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassportProcessing", "4\PassportProcessing\PassportProcessing.csproj", "{553BAFF2-2CFB-437A-82F3-5B0B90134BAC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5", "5", "{00BE4B17-8A0A-4FD9-8950-B9526DB0C29D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryBoarding", "5\BinaryBoarding\BinaryBoarding.csproj", "{1056E9F6-F595-4DDA-BDED-42E8F7ADEFE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryBoarding", "5\BinaryBoarding\BinaryBoarding.csproj", "{1056E9F6-F595-4DDA-BDED-42E8F7ADEFE5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6", "6", "{5C68602F-7640-4059-8C1F-0FA775B4A3FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCustoms", "6\CustomCustoms\CustomCustoms.csproj", "{F6B5DB9A-46C6-4E3B-9C05-514846591017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomCustoms", "6\CustomCustoms\CustomCustoms.csproj", "{F6B5DB9A-46C6-4E3B-9C05-514846591017}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7", "7", "{80DDF2E8-479C-4A7F-B361-04F9D3B445DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyHaversacks", "7\HandyHaversacks\HandyHaversacks.csproj", "{17D51840-DAA1-4393-A678-AF151A81BCF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandyHaversacks", "7\HandyHaversacks\HandyHaversacks.csproj", "{17D51840-DAA1-4393-A678-AF151A81BCF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8", "8", "{8459C51D-E482-4AE3-8874-F32156965C92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandheldHalting", "8\HandheldHalting\HandheldHalting.csproj", "{7BB7B1F4-452B-4222-8825-A59F75DA71CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandheldHalting", "8\HandheldHalting\HandheldHalting.csproj", "{7BB7B1F4-452B-4222-8825-A59F75DA71CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9", "9", "{A22BF42F-E8B0-4FE3-B85D-73D8B6B34F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncodingError", "9\EncodingError\EncodingError.csproj", "{9B5EB6FA-A00B-4DA6-BC40-E3BDF701ED9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncodingError", "9\EncodingError\EncodingError.csproj", "{9B5EB6FA-A00B-4DA6-BC40-E3BDF701ED9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10", "10", "{1ECF4462-86BF-4227-94CB-DD5733EF94B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "10\src\src.csproj", "{6D9A46A6-E746-488C-9C4A-F371C25A909E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{F5DD74B8-984E-455F-8C3A-3A22A7C75F1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{F5DD74B8-984E-455F-8C3A-3A22A7C75F1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdapterArray", "10\src\AdapterArray.csproj", "{F9A61B3B-7B2B-4EFD-A87F-A21437776C6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{53EF5932-67E0-4A9E-973F-85AC866B832E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -90,14 +87,17 @@ Global
 		{9B5EB6FA-A00B-4DA6-BC40-E3BDF701ED9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B5EB6FA-A00B-4DA6-BC40-E3BDF701ED9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B5EB6FA-A00B-4DA6-BC40-E3BDF701ED9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D9A46A6-E746-488C-9C4A-F371C25A909E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D9A46A6-E746-488C-9C4A-F371C25A909E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D9A46A6-E746-488C-9C4A-F371C25A909E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D9A46A6-E746-488C-9C4A-F371C25A909E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5DD74B8-984E-455F-8C3A-3A22A7C75F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5DD74B8-984E-455F-8C3A-3A22A7C75F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DD74B8-984E-455F-8C3A-3A22A7C75F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DD74B8-984E-455F-8C3A-3A22A7C75F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A61B3B-7B2B-4EFD-A87F-A21437776C6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A61B3B-7B2B-4EFD-A87F-A21437776C6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A61B3B-7B2B-4EFD-A87F-A21437776C6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A61B3B-7B2B-4EFD-A87F-A21437776C6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{53EF5932-67E0-4A9E-973F-85AC866B832E} = {037392C9-FCA9-46BB-8170-A5B5316042B6}
@@ -109,6 +109,9 @@ Global
 		{17D51840-DAA1-4393-A678-AF151A81BCF6} = {80DDF2E8-479C-4A7F-B361-04F9D3B445DC}
 		{7BB7B1F4-452B-4222-8825-A59F75DA71CE} = {8459C51D-E482-4AE3-8874-F32156965C92}
 		{9B5EB6FA-A00B-4DA6-BC40-E3BDF701ED9F} = {A22BF42F-E8B0-4FE3-B85D-73D8B6B34F6F}
-		{6D9A46A6-E746-488C-9C4A-F371C25A909E} = {1ECF4462-86BF-4227-94CB-DD5733EF94B3}
+		{F9A61B3B-7B2B-4EFD-A87F-A21437776C6B} = {1ECF4462-86BF-4227-94CB-DD5733EF94B3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7742D5D0-D20E-4167-82D9-9966DF1DEBDF}
 	EndGlobalSection
 EndGlobal
